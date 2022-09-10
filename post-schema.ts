@@ -13,6 +13,10 @@ const schema = new mongoose.Schema({
     body: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: false
     }
 })
 

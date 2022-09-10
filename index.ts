@@ -37,11 +37,14 @@ client.on('interactionCreate', async (interaction) => {
             const title = interaction.options.getString('title')
             const body = interaction.options.getString('content')
             const cat = interaction.options.getString('category')
+            let attachment = interaction.options.getAttachment('attachment')
+
             console.log(title, body, cat)
             await new postSchema({
                 title: title,
                 category: cat || '',
                 body: body,
+                image: attachment?.url || ''
             }).save()
             await interaction.reply({ content: 'Post Successfully Submitted', ephemeral: true })
         }
@@ -69,6 +72,10 @@ async function main() {
             option.setName('content')
                 .setDescription('Main Content of the Post')
                 .setRequired(true))
+        .addAttachmentOption(option => 
+            option.setName('attachment')
+                .setDescription('Insert Image with Upload')
+                )
 
     const commands = [postCommand]
     try {
