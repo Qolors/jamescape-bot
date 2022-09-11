@@ -7,9 +7,10 @@ import postSchema from './post-schema'
 
 dotenv.config();
 
-const guildId = '945010681625858130';
+const guildId = '402652836606771202';
 const appId = process.env.APP_ID || ''
 const token = process.env.TOKEN || ''
+const james = '206232637424140289';
 
 const client = new Client({
     intents: [
@@ -33,21 +34,23 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isChatInputCommand()) {
-        if (interaction.commandName === 'post') {
-            const title = interaction.options.getString('title')
-            const body = interaction.options.getString('content')
-            const cat = interaction.options.getString('category')
-            let attachment = interaction.options.getAttachment('attachment')
+        if (interaction.user.id === james)
 
-            console.log(title, body, cat)
-            await new postSchema({
-                title: title,
-                category: cat || '',
-                body: body,
-                image: attachment?.url || ''
-            }).save()
-            await interaction.reply({ content: 'Post Successfully Submitted', ephemeral: true })
-        }
+            if (interaction.commandName === 'post') {
+                const title = interaction.options.getString('title')
+                const body = interaction.options.getString('content')
+                const cat = interaction.options.getString('category')
+                let attachment = interaction.options.getAttachment('attachment')
+
+                console.log(title, body, cat)
+                await new postSchema({
+                    title: title,
+                    category: cat || '',
+                    body: body,
+                    image: attachment?.url || ''
+                }).save()
+                await interaction.reply({ content: 'Post Successfully Submitted', ephemeral: true })
+            }
     }
 })
 
