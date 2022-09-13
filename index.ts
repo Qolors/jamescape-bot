@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Routes, SlashCommandBuilder } from 'discord.js'
+import { Client, GatewayIntentBits, Routes, SlashCommandBuilder, EmbedBuilder } from 'discord.js'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import { REST } from 'discord.js'
@@ -42,14 +42,20 @@ client.on('interactionCreate', async (interaction) => {
                 const cat = interaction.options.getString('category')
                 let attachment = interaction.options.getAttachment('attachment')
 
-                console.log(title, body, cat)
                 await new postSchema({
                     title: title,
                     category: cat || '',
                     body: body,
                     image: attachment?.url || ''
                 }).save()
-                await interaction.reply({ content: 'Post Successfully Submitted', ephemeral: true })
+                const embedder  = new EmbedBuilder()
+                    .setColor(0x0099FF)
+                    .setTitle("Post Submitted")
+                    .setThumbnail('https://jamescape-web-qolors.vercel.app/jamescape.png')
+                    .addFields(
+                        { name: 'James Rant', value: body || ''},
+                    )
+                await interaction.reply({ embeds: [embedder] })
             }
     }
 })
