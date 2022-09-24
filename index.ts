@@ -42,16 +42,20 @@ client.on('interactionCreate', async (interaction) => {
                 const cat = interaction.options.getString('category')
                 let attachment = interaction.options.getAttachment('attachment')
 
-                await new postSchema({
+                var n = new postSchema({
                     title: title,
                     category: cat || '',
                     body: body,
                     image: attachment?.url || ''
-                }).save()
+                })
+                n.save()
+                const url = n._id
                 const embedder  = new EmbedBuilder()
                     .setColor(0x0099FF)
                     .setTitle("Post Submitted")
+                    .setURL(`https://jamescape-web-qolors.vercel.app/posts/${url}`)
                     .setThumbnail('https://jamescape-web-qolors.vercel.app/jamescape.png')
+                    .setImage(n.image || '')
                     .addFields(
                         { name: 'James Rant', value: body || ''},
                     )
@@ -75,6 +79,7 @@ async function main() {
                     { name: 'Leveling', value: 'leveling' },
                     { name: 'Combat', value: 'combat' },
                     { name: 'Misc', value: 'misc' },
+                    { name: 'Meme', value: 'memes' }
                 )
                 .setRequired(true))
         .addStringOption(option => 
