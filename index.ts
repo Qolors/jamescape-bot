@@ -11,6 +11,7 @@ const guildId = '402652836606771202';
 const appId = process.env.APP_ID || ''
 const token = process.env.TOKEN || ''
 const james = '206232637424140289';
+const chris = '331308445166731266'
 
 const client = new Client({
     intents: [
@@ -34,7 +35,7 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isChatInputCommand()) {
-        if (interaction.user.id === james)
+        if (interaction.user.id === james || chris)
 
             if (interaction.commandName === 'post') {
                 const title = interaction.options.getString('title')
@@ -89,7 +90,9 @@ async function main() {
         .addAttachmentOption(option => 
             option.setName('attachment')
                 .setDescription('Insert Image with Upload')
+                .setRequired(true)
                 )
+                
 
     const commands = [postCommand]
     try {
