@@ -35,7 +35,7 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isChatInputCommand()) {
-        if (interaction.user.id === james || chris)
+        if (interaction.user.id === james)
 
             if (interaction.commandName === 'post') {
                 const title = interaction.options.getString('title')
