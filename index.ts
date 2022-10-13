@@ -82,15 +82,16 @@ async function main() {
                     { name: 'Meme', value: 'memes' }
                 )
                 .setRequired(true))
-        .addStringOption(option => 
-            option.setName('content')
-                .setDescription('Main Content of the Post')
-                .setRequired(false))
         .addAttachmentOption(option => 
             option.setName('attachment')
                 .setDescription('Insert Image with Upload')
                 .setRequired(true)
                 )
+        .addStringOption(option => 
+            option.setName('content')
+                .setDescription('Main Content of the Post')
+                .setRequired(false))
+        
                 
 
     const commands = [postCommand]
