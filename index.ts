@@ -40,7 +40,7 @@ client.on('interactionCreate', async (interaction) => {
                 const title = interaction.options.getString('title')
                 const body = interaction.options.getString('content')
                 const cat = interaction.options.getString('category')
-                let attachment = interaction.options.getAttachment('attachment')
+                const attachment = interaction.options.getAttachment('attachment')
 
                 var n = new postSchema({
                     title: title,
@@ -55,7 +55,7 @@ client.on('interactionCreate', async (interaction) => {
                     .setTitle("Post Submitted")
                     .setURL(`https://jamescape-web-qolors.vercel.app/posts/${url}`)
                     .setThumbnail('https://jamescape-web-qolors.vercel.app/jamescape.png')
-                    .setImage(n.image || '')
+                    .setImage(n.image || 'https://jamescape-web-qolors.vercel.app/jamescape.png')
                     .addFields(
                         { name: 'James Rant', value: body || ''},
                     )
