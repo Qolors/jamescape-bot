@@ -11,7 +11,6 @@ const guildId = '402652836606771202';
 const appId = process.env.APP_ID || ''
 const token = process.env.TOKEN || ''
 const james = '206232637424140289';
-const chris = '331308445166731266'
 
 const client = new Client({
     intents: [
@@ -86,7 +85,7 @@ async function main() {
         .addStringOption(option => 
             option.setName('content')
                 .setDescription('Main Content of the Post')
-                .setRequired(true))
+                .setRequired(false))
         .addAttachmentOption(option => 
             option.setName('attachment')
                 .setDescription('Insert Image with Upload')
