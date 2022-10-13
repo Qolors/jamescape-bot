@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     },
     body: {
         type: String,
-        required: false
+        required: true
     },
     image: {
         type: String,
