@@ -45,7 +45,7 @@ client.on('interactionCreate', async (interaction) => {
                 var n = new postSchema({
                     title: title,
                     category: cat || '',
-                    body: body || '',
+                    body: body ? body : '',
                     image: attachment?.url || ''
                 })
                 n.save()
