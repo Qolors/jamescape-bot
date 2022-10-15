@@ -57,7 +57,7 @@ client.on('interactionCreate', async (interaction) => {
                     .setThumbnail('https://jamescape-web-qolors.vercel.app/jamescape.png')
                     .setImage(n.image || 'https://jamescape-web-qolors.vercel.app/jamescape.png')
                     .addFields(
-                        { name: 'James Rant', value: body || ''},
+                        { name: 'James Rant', value: body ? body : ''},
                     )
                 await interaction.reply({ embeds: [embedder] })
             }
